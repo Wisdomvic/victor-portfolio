@@ -1,15 +1,34 @@
-// Prompt
-const customerName = prompt("What is your name");
-console.log("Cutomer Name:", customerName);
+//DOM Manipulation
+document.addEventListener('DOMContentLoaded', () =>{
 
-//items
-const selectedItem = prompt(" What Items do you want ");
-console.log("Selected Item:", selectedItem);
+const textInput = document.getElementById('textinput');
+const clickBtn = document.getElementById('clickme');
+const resetBtn = document.getElementById('reset');
+const colorBtn = document.getElementById('color');
+const countEl = document.getElementById('count');
 
-//Amount of items
-const itemAmount = prompt("How many items do you want");
-console.log("Item Amount:", itemAmount);
+// counter 
+let counter = 0;
+ 
+//for click
+clickBtn.addEventListener('click', () =>{
+    counter++;
+    countEl.textContent = counter;
+    console.log('button clicked', counter , 'times');
 
-// Final confirmation
-alert("Order fully accepted for " + customerName + ": " + itemAmount + " x " + selectedItem);
+});
 
+ //reset button listener reset counter
+    resetBtn.addEventListener('click',() => {
+        counter = 0;
+        countEl.textContent = counter;
+        console.log('counter reset');
+    });
+
+//Background button -> changed when clicked
+colorBtn.addEventListener('click',() =>{
+document.body.style.backgroundColor = "red";
+console.log('Background changed to red');
+    });
+
+});
