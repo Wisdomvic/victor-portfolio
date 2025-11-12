@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style14.css">
+    <script src="script14.js" defer></script>
+    <title>Smart Task</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Smart Task & Goals Manager</h1>
+
+        <!-- label -->
+        <label for="goal">Goals Name:</label>
+        <input type="text" id="goal">
+         <!-- Label -->
+          <label for="date">Expired Date:</label>
+          <input type="date" name="date" id="date">
+
+          <!-- Select -->
+           <select name="drop" id="drop">
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+           </select>
+
+        <!-- Button-->
+       <button id="edit">Edit</button>
+       <button id="complete">Completed</button>
+       <button id="filter">Filter</button>
+       <button id="search">Search</button>
+       <button id="delete">Delete</button>
+       <button id="clear">Clear All</button>
+         
+       <!-- list(ul) -->
+        <ul id="list"></ul>
+    </div>
+</body>
+</html>
