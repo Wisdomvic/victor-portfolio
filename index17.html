@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Api Sandbox</title>
+</head>
+<body>
+    <button id="getText">Get Text</button>
+
+    <script>
+        document.getElementById('getText').addEventListener('click', getText);
+
+        function getText() {
+            /* fetch('sample.txt') 
+            .then( function(res){
+                return(res.text())   
+        });
+        .then(function(data){
+         console.log(data);
+        }); */
+
+        fetch('sample.txt') 
+        .then(res => res.text())
+        .then((data) => {
+            document.getElementById('output').innerHTML = data;
+        })
+        .catch(error =>{
+            console.log('Error:', error);
+        })
+        }
+    </script>
+</body>
+</html>
