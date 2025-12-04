@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Advanced Random User Dashboard</title>
+  <link rel="stylesheet" href="style23.css">
+  <script src="script23.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Random User Dashboard</h1>
+      <p>Generate multiple users, search & filter locally (no extra requests).</p>
+    </header>
+
+    <div class="controls">
+      <button id="load">Load Users</button>
+
+      <input id="searchInput" type="search" placeholder="Search by name or country…" />
+
+      <div class="gender-filters">
+        <button class="gender-btn active" data-gender="all">All</button>
+        <button class="gender-btn" data-gender="male">Male</button>
+        <button class="gender-btn" data-gender="female">Female</button>
+      </div>
+
+      <button id="reloaduser">Reload Users</button>
+    </div>
+
+    <div id="status" class="status" aria-live="polite"></div>
+
+    <!-- container for user cards -->
+    <div id="usersContainer" class="users-grid"></div>
+  </div>
+</body>
+</html>
