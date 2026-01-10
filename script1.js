@@ -1,27 +1,78 @@
-// for The head
-//wait until DOM is loaded(safe when you don't use)
-document.addEventListener('DOMContentLoaded', () =>{
+document.addEventListener('DOMContentLoaded', () => {
 
-const taskInput = document.getElementById('taskinput'); // matches the HTML id
-const clickBtn = document.getElementById("clickme");
-const resetBtn = document.getElementById('reset');
-const countEl = document.getElementById('count'); // Now added
+    // DOM
+    const taskInput = document.querySelector('#task');
+    const submitTask = document.querySelector('#submitTask');
+    const displayTask = document.querySelector('#displaytask');
+    const timeDisplay = document.querySelector('#time');
 
-/* Let count */
-let counter = 0;
+    const startBtn = document.querySelector('#start');
+    const remainBtn = document.querySelector('#remain');
+    const pauseBtn = document.querySelector('#pause');
+    const resetBtn = document.querySelector('#reset');
 
-//3) Attach a click event listen
-clickBtn.addEventListener('click', ()=>{
-    counter++;     //Increasement
-    countEl.textContent = counter; //update UI
-    console.log('button clicked', counter, 'times');
-    alert('I was clicked by you');
-});
+    // State
+    let totalSeconds = 25 * 60;
+    let timer = null;
+    let running = false;
 
-    //reset button listener reset counter
-    resetBtn.addEventListener('click',() => {
-        counter = 0;
-        countEl.textcontent = counter;
-        console.log('counter reset');
+    // Helpers
+    function updateTime() {
+        let minutes = Math.floor(totalSeconds / 60);
+        let seconds = totalSeconds % 60;
+        timeDisplay.textContent =
+            `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+    }
+
+    // Timer controls
+    function startTimer() {
+        if (running) return;
+        running = true;
+
+        timer = setInterval(() => {
+            if (totalSeconds > 0) {
+                totalSeconds--;
+                updateTime();
+            } else {
+                clearInterval(timer);
+                running = false;
+                alert('Session completed 🎉');
+            }
+        }, 1000);
+    }
+
+    function pauseTimer() {
+        clearInterval(timer);
+        running = false;
+    }
+
+    function resetTimer() {
+        clearInterval(timer);
+        running = false;
+        totalSeconds = 25 * 60;
+        updateTime();
+    }
+
+    function remainTime() {
+        alert(`Remaining time: ${timeDisplay.textContent}`);
+    }
+
+    // Task
+    submitTask.addEventListener('click', () => {
+        const task = taskInput.value.trim();
+        if (!task) {
+            alert('Please enter a task');
+            return;
+        }
+        displayTask.textContent = `Current Task: ${task}`;
+        taskInput.value = '';
     });
+
+    // Events
+    startBtn.addEventListener('click', startTimer);
+    pauseBtn.addEventListener('click', pauseTimer);
+    resetBtn.addEventListener('click', resetTimer);
+    remainBtn.addEventListener('click', remainTime);
+
+    updateTime();
 });
